@@ -1,11 +1,11 @@
-FROM node:/lts-buster-slim
+FROM node:14
 
 # create app dir
 WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/package.json
-COPY package-lock.json /usr/src/app/package-lock.json
-RUN npm ci
+COPY yarn.lock /usr/src/app/yarn.lock
+RUN yarn install
 
 COPY  . /usr/src/app
 
