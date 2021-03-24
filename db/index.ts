@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-exports.connect = (app: any) => {
+const connectDb = (app : any) =>{
   const options = {
     useNewUrlParser: true,
     autoIndex: false, // Don't build indexes
@@ -20,10 +20,12 @@ exports.connect = (app: any) => {
         console.log("MongoDB is connected")
         app.emit("ready")
       })
-      .catch((err) => {
-        console.log("MongoDB connection unsuccessful, retry after 2 seconds.")
+      .catch((err: Error) => {
+        console.log("MongoDB connection unsuccessful, retry after 2 seconds. Error: {0}", err)
         setTimeout(connectWithRetry, 2000)
       })
   }
   connectWithRetry()
 }
+
+export default connectDb
