@@ -20,7 +20,8 @@ router.get('/api/v1/', (req: Request, res: Response) => {
 // USER ROUTES
 
 router.post('/api/v1/users/new', UserController.createUser)
-
+router.put('/api/v1/users/:id/update', UserController.updateUser)
+router.delete('/api/v1/users/:id' , UserController.deleteUser)
 /*
 
             INCOMING 
