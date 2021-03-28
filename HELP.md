@@ -9,7 +9,7 @@ The following is a code snippet to help with connection to the mongo db. If you 
 https://cloud.mongodb.com
 
 ``` const MongoClient = require('mongodb').MongoClient;
-  const uri = "mongodb+srv://jakes:<password>@tech-tracker.cpvag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  const uri = "mongodb+srv://<user>:<password>@<db-name>.cpvag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
   client.connect(err => {
     const collection = client.db("test").collection("devices");
