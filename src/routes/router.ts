@@ -20,6 +20,7 @@ router.get('/api/v1/', (req: Request, res: Response) => {
 
 // USER ROUTES
 router.post('/api/v1/users/new', UserController.createUser)
+router.get('/api/v1/users', UserController.readUser)
 router.put('/api/v1/users/:id/update', UserController.updateUser)
 router.delete('/api/v1/users/:id' , UserController.deleteUser)
 
@@ -30,7 +31,7 @@ router.put('/api/v1/comp/new', CompanyController.createCompany)
 
 /*
 
-            INCOMING 
+            INCOMING
 
 	auth:			( express router, uses controllers to call services )
 	    /login	validate jwt
@@ -41,7 +42,7 @@ router.put('/api/v1/comp/new', CompanyController.createCompany)
 	    .delete /users/:id	delete user
 
 	company:
-	    .get /company		 gets companys 
+	    .get /company		 gets companys
 	    .get /company/:id		 get specific company
 	    .get /company/:id/prediction get prediction from model
 */

@@ -23,7 +23,7 @@ export default class UserService{
 
     deleteUser: (id: ObjectId) => Promise<DeleteWriteOpResultObject['result']> = async function(id: ObjectId) {
         try {
-            let result:DeleteWriteOpResultObject['result'] 
+            let result:DeleteWriteOpResultObject['result']
             result = await User.deleteOne({_id:id}).exec()
         if (!result.n) {
            throw new Error("Could not delete the User. Please try again")
@@ -32,5 +32,13 @@ export default class UserService{
         } catch (err) {
             throw err
         }
+    }
+
+    readUser: () => Promise<IUser[]> = async function() {
+      try {
+        return await User.find({})
+      } catch(err) {
+        throw err
+      }
     }
 }

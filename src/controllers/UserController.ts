@@ -21,15 +21,24 @@ const createUserController:(req:Request, res:Response) => void = async(req:Reque
     }
 }
 
+const readUserController:(req:Request, res:Response) => void = async(req:Request, res:Response) => {
+  if (req.body) {
+    const users = await service.readUser()
+    res.status(200).json(users)
+  } else {
+    res.status(400).send("error!")
+  }
+}
+
 const updateUserController:(req:Request, res:Response) => void = async(req:Request, res:Response) => {
-		// check for a body 
+		// check for a body
 		if (req.body) {
 				const id:ObjectId = new ObjectId(req.params.id)
-				
+
 				const user_updates:Partial<IUser> = {}
 				if ('email' in req.body) {
 						user_updates.email = req.body.email
-				} 
+				}
 				if ('password' in req.body) {
 						user_updates.password = req.body.password
 				}
@@ -58,6 +67,7 @@ const deleteUserController:(req:Request, res:Response) => void = async(req:Reque
 
 export default {
     createUser: createUserController,
+    readUser: readUserController,
 		updateUser: updateUserController,
 		deleteUser: deleteUserController
 }
