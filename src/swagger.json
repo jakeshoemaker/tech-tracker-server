@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Tech-Tracker API",
+    "description": "An API that gives you historical data and predictions for popular stocks"
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Gets some users",
+        "description": "Returns a list of all users in database",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Users"
+            }
+          }
+        }
+      }
+    },
+    "/users/new": {
+      "post": {
+        "summary": "Create new user",
+        "description": "Creates and inserts a new user into the database",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "choices": {
+            "type": "string"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "$ref": "#/components/schemas/User"
+      }
+    }
+  }
+}
