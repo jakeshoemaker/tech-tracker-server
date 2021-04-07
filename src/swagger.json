@@ -38,6 +38,102 @@
           }
         }
       }
+    },
+    "/users/:id/update": {
+      "put": {
+        "summary": "Update a users information",
+        "description": "You can update a specific user attribute",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/:id/": {
+      "delete": {
+        "summary": "delete a user from database",
+        "description": "deletes the user based on specified ID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "type": "string",
+            "description": "the ID of the user to delete"
+          }
+        ]
+      }
+    },
+    "/comp/all": {
+      "get": {
+        "summary": "get all company object from database",
+        "description": "gets every document from the Company Collection",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Companies"
+            }
+          }
+        }
+      }
+    },
+    "/comp/:id": {
+      "get": {
+        "summary": "get a specific company",
+        "description": "gets a company based on the specified ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "description": "the ID of the Company you want to GET"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/Company"
+            }
+          }
+        }
+      }
+    },
+    "/comp/new": {
+      "post": {
+        "summary": "create a new company in database",
+        "description": "Insert a new Company document in the database",
+        "parameters": [
+          {
+            "name": "Company",
+            "in": "body",
+            "description": "The data you will be inserting into the collection",
+            "type": {
+              "$ref": "#/components/schemas/Company"
+            }
+          }
+        ],
+        "response": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "/#components/schemas/Company"
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -58,6 +154,36 @@
       "Users": {
         "type": "array",
         "$ref": "#/components/schemas/User"
+      },
+      "Company": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "historical_data": {
+            "closing_price": {
+              "type": "array"
+            },
+            "date": {
+              "type": "string"
+            }
+          },
+          "prediction_data": {
+            "closing_price": {
+              "type": "array"
+            },
+            "date": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Companies": {
+        "type": "array",
+        "$ref": "#/components/schemas/Company"
       }
     }
   }
