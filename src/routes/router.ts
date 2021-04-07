@@ -27,7 +27,7 @@ router.delete('/api/v1/users/:id' , UserController.deleteUser)
 // COMPANY ROUTES
 router.get('/api/v1/comp/all', CompanyController.getAllCompany)
 router.get('/api/v1/comp/:id', CompanyController.getCompanyById)
-router.put('/api/v1/comp/new', CompanyController.createCompany)
+router.post('/api/v1/comp/new', CompanyController.createCompany)
 
 /*
 

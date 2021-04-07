@@ -97,6 +97,11 @@
   resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.1.7.tgz#1c3f0655f6e912f5578ce40baa941ab8705fc0ef"
   integrity sha512-ByseCEyhb+64fapaFR/yASUfAU+Ia4LpCnHhoNMQJFSIBvbtFoEZQB0elwrSF/idpKL5OZvmZhCCukGV8Zi22w==
 
+"@types/js-yaml@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.0.tgz#d1a11688112091f2c711674df3a65ea2f47b5dfb"
+  integrity sha512-4vlpCM5KPCL5CfGmTbpjwVKbISRYhduEJvvUWsH5EB7QInhEj94XPZ3ts/9FPiLZFqYO0xoW4ZL8z2AabTGgJA==
+
 "@types/jsonwebtoken@^8.5.0":
   version "8.5.1"
   resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#56958cb2d80f6d74352bd2e501a018e2506a8a84"
