@@ -68,6 +68,6 @@ const deleteUserController:(req:Request, res:Response) => void = async(req:Reque
 export default {
     createUser: createUserController,
     readUser: readUserController,
-		updateUser: updateUserController,
-		deleteUser: deleteUserController
+	updateUser: updateUserController,
+	deleteUser: deleteUserController
 }
