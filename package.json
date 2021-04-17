@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "nodemon",
     "tsc": "tsc",
-    "build-docs": "run-func /src/services/initService.ts buildDocs"
+    "build-docs": "run-func /src/services/initService.ts buildDocs",
+    "get-models": "aws s3 cp s3://tt-model-weights/ src/tensorflow/ --recursive"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@tensorflow/tfjs": "^3.3.0",
+    "@tensorflow/tfjs-node": "^3.4.0",
     "@types/js-yaml": "^4.0.0",
+    "async": "^3.2.0",
     "aws-sdk": "^2.886.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
