@@ -1,10 +1,21 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Layout } from 'antd'
+import Header from './Components/Header/Header'
+import Login from './Components/Auth/Login/Login'
+import Home from './Components/Home/Home'
 import './App.css';
+
+
+const { Content } = Layout;
+
 
 const App = () => {
   return (
-    <Button type="primary"> TEST </Button>
+    <div>
+      <Header />
+      <Home />
+    </div>
+    
   )
 }
 
