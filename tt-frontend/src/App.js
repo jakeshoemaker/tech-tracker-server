@@ -1,21 +1,31 @@
-import React from 'react';
-import { Layout } from 'antd'
+import React, { useState } from 'react';
 import Header from './Components/Header/Header'
-import Login from './Components/Auth/Login/Login'
 import Home from './Components/Home/Home'
+import Login from './Components/Auth/Login/Login'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
-
-
-const { Content } = Layout;
+import { AuthContext } from './Context/Auth';
 
 
 const App = () => {
+  const existingTokens = JSON.parse(localStorage.getItem("tokens"))
+  const [authTokens, setAuthTokens] = useState(existingTokens)
+
+  const setTokens = (data) => {
+    localStorage.setItem("tokens", JSON.stringify(data))
+    setAuthTokens(data)
+  }
+  
   return (
-    <div>
-      <Header />
-      <Home />
-    </div>
-    
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+      <Router>
+        <div>
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </div>
+      </Router>
+    </AuthContext.Provider>
   )
 }
 
