@@ -1,23 +1,39 @@
 import React from 'react'
 import { Button, PageHeader } from 'antd'
+import { useAuth } from '../../Context/Auth'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
+const Header = (props) => {
+    const context = useAuth()
 
-
-const Header = () => {
-    return(
+    if ( context !== null ){
+       return (
         <div className="page-header">
             <PageHeader
                 ghost={false}
-                onBack{...()=> window.history.back()}
                 title="Tech Tracker"
                 subTitle="Your All-In-One Stock Researcher"
                 extra={[
-                    <Button type="primary">Login</Button>
+                    <Link to="/login">Login</Link>
                 ]}            
-            ></PageHeader>
+            />
         </div>
-    )
+       )
+    } else {
+        return (
+            <div className="page-header" >
+                <PageHeader
+                    ghost={false}
+                    title="Tech Tracker"
+                    subTitle="Your All-In-One Stock Researcher"
+                    extra={[
+                        <h5>Welcome User</h5>
+                    ]}
+                />
+            </div>
+        )
+    }
 }
 
 export default Header;

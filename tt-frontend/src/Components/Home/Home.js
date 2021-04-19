@@ -2,25 +2,26 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useAuth } from '../../Context/Auth'
 import { Typography, Divider } from 'antd';
+import Chart from '../Chart/Chart'
 
 const Home = () => {
     const { Title, Paragraph, Text, Link } = Typography;
     const context = useAuth();
 
-    if(context === null) {
+    if (context === null) {
         return <Redirect to="/login" />
-    }
+    } else {
 
-    return (
-        <Typography>
-            <Title>Tech-Tracker</Title>
-            <Paragraph>
-                Tech-Tracker is a finacial tool that allows a user to utilize the power
-                of machine learning and artificial intelligence to view predictions as well
-                as historical data of Top traded stocks and Crypto currencies!
-            </Paragraph>
-        </Typography>
-    )
+        return (
+            <div className="home-container">
+                <Typography>
+                    <Title>Your Dashboard</Title>
+                    <Divider></Divider>
+                </Typography>
+                <Chart />
+            </div>
+        )
+        }
 }
 
 export default Home;
