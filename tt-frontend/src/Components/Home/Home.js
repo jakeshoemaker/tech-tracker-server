@@ -5,7 +5,7 @@ import { Typography, Divider } from 'antd';
 import Chart from '../Chart/Chart'
 
 const Home = () => {
-    const { Title, Paragraph, Text, Link } = Typography;
+    const { Title } = Typography;
     const context = useAuth();
 
     if (context === null) {
