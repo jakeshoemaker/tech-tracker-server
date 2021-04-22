@@ -1,22 +1,75 @@
 import React, { useEffect, useState } from 'react'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
-import { Button } from 'antd'
+import { Line } from 'react-chartjs-2'
 import axios from 'axios'
 
 const Chart = () => {
-    const [company, setCompany] = useState()
-    const [companyData, setCompanyData] = useState()
+    const [company, setCompany] = useState("AAPL")
+    const [chartData, setChartData] = useState({})
     const [dataLoaded, setDataLoaded] = useState(false)
-    const ticker = 'AAPL'
+    const options = {
+        responsive: true,
+        maintainAspectRatio: true,
+        layout: {
+            padding: {
+                top: 5,
+                left: 15,
+                right: 15,
+                bottom: 15
+            }
+        },
+        legend: {
+            labels: {
+            fontColor: 'black',
+            fontSize: 24
+            }  
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontSize: 18,
+                    fontColor: 'black'
+                }
+            }],
+            xAxes: [{
+            ticks: {
+                fontSize: 18,
+                fontColor: 'black'
 
-    const getData = () => {
-        axios.get("https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=GET_YOUR_OWN_API&collapse=annual&column_index=4")
+            }
+            }]
+        }
+    }
+    
+
+
+    const loadChart = () => {
+        let companyClosingData = [] // holds closing price
+        let companyClosingDate = [] // holds timestamp
+        axios
+        .get(`https://www.quandl.com/api/v3/datasets/EOD/${company}.json?api_key=${process.env.REACT_APP_API_KEY}&collapse=annual&column_index=4&order=asc`)
         .then(res => {
             if (res.status === 200) {
-                //setCompanyData(res.data.dataset.data)
-                return res.data.dataset.data
+                for (const dataArr of res.data.dataset.data) {
+                    companyClosingData.push(dataArr[1])
+                    companyClosingDate.push(dataArr[0])
+                }
+                setDataLoaded(true)
+                setChartData({
+                    labels: companyClosingDate,
+                    datasets: [
+                        {
+                            label: `${company}'s Historical data`,
+                            fontSize: 24,
+                            data: companyClosingData,
+                            backgroundColor: "#ffa39e",
+                            borderWidth: 4
+
+                        }
+                    ]
+                })
             } else {
                 console.error("error")
+                setDataLoaded(false)
                 return []
             }
         }).catch(err => {
@@ -24,7 +77,7 @@ const Chart = () => {
         })
     }
 
-    const prepareData = async () => {
+/*     const prepareData = async () => {
         var data = await getData()
         const clean_data = data.map(function(d) {
             return  {
@@ -34,27 +87,21 @@ const Chart = () => {
         })
         console.log(clean_data)
         return clean_data
-    }
+    } */
 
     useEffect(() => {
-        (async () => {
-            setDataLoaded(false)
-            setCompanyData(prepareData()) 
-        }) ()
-    }, [companyData])
+        loadChart();
+    }, [company])
     
     //const DUMMY_DATA = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}]
     return (
-        <div>
+        <div className="chart">
             {dataLoaded ? (
-                <LineChart width={800} height={400} data={companyData}>
-                    <Line type="monotone" dataKey="closing_price"stroke="#8884d8" />
-                    <CartesianGrid stroke="#ccc" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                </LineChart>
-            ) : (
-                <h1> could not load the data, please try again</h1>
+                <Line 
+                    data={chartData} 
+                    options={options}
+                /> ) : (
+                <h1> could not load the data, please check your settings</h1>
             )}
         </div>
     )
