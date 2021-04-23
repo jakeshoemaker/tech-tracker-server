@@ -3,8 +3,9 @@ import Header from './Components/Header/Header'
 import Home from './Components/Home/Home'
 import Login from './Components/Auth/Login/Login'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import './App.css';
 import { AuthContext } from './Context/Auth';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { useAuth } from '../../Context/Auth'
 import { Typography, Divider } from 'antd';
-import Chart from '../Chart/Chart'
+import Dashboard from '../Dashboard/Dashboard'
 
 const Home = () => {
     const { Title } = Typography;
@@ -12,16 +12,12 @@ const Home = () => {
         return <Redirect to="/login" />
     } else {
 
-        return (
-            <div className="home-container">
-                <Typography>
-                    <Title>Your Dashboard</Title>
-                    <Divider></Divider>
-                </Typography>
-                <Chart />
-            </div>
-        )
-        }
+    return (
+        <div className="home-container">
+            <Dashboard />
+        </div>
+      )
+    }
 }
 
 export default Home;
