@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Input}from 'react-bootstrap'
 import axios from 'axios'
 import Chart from '../Chart/Chart'
@@ -24,11 +24,11 @@ const Dashboard = () => {
                     labels: companyClosingDate,
                     datasets: [
                         {
-                            label: `${tempCompany}'s Historical data`,
+                            label: `${tempCompany}'s Stock Price $`,
                             fontSize: 28,
                             data: companyClosingData,
                             backgroundColor: "#ffa39e",
-                            borderWidth: 8
+                            borderWidth: 4
 
                         }
                     ]
@@ -45,18 +45,27 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <div className="user-input">
-                <input type="text" id="comapny-ticker" className="form-control" onChange={(e) => {setTempCompany(e.target.value)}} />
-                <label className="form-label" for="company-ticker">Enter Company Ticker</label>
-                <Button 
-                    variant="dark"
-                    onClick={ () => {
-                        getChart()
-                    }}
-                >Search</Button>
+            <div className="container-md">
+                <h2> Historical Data View</h2>
+            </div>
+            <div className="container">
+                <div className="row" id="data-search">
+                    <div className="col-sm">
+                        <label>Stock Symbol</label>
+                        <input type="text" id="company-ticker" className="form-control" onChange={(e) => {setTempCompany(e.target.value)}} />
+                    </div>
+                    <div className="col-sm" id="get-data">
+                        <Button 
+                        variant="dark"
+                        onClick={ () => {
+                            getChart()
+                        }}
+                    >Load Data</Button>
+                    </div>
+                </div>
                 <Chart companyData={companyData} />
             </div>
-             
+            
         </div>
     )
 
