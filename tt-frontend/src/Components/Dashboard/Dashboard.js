@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Input}from 'react-bootstrap'
 import axios from 'axios'
 import Chart from '../Chart/Chart'
+import { Utils }
 import './Dashboard.css'
 
 
@@ -22,13 +23,14 @@ const Dashboard = () => {
                 }
                 setCompanyData({
                     labels: companyClosingDate,
+                    options: {},
                     datasets: [
                         {
                             label: `${tempCompany}'s Stock Price $`,
                             fontSize: 28,
                             data: companyClosingData,
-                            backgroundColor: "#ffa39e",
-                            borderWidth: 4
+                            backgroundColor: Utils.CHART_COLORS.blue,
+                            borderColor: Utils.CHART_COLORS.blue,
 
                         }
                     ]
@@ -41,6 +43,7 @@ const Dashboard = () => {
             console.log(err)
         })
     }
+
 
 
     return (
