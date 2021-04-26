@@ -4,6 +4,7 @@ import './Chart.css'
 
 const Chart = (props) => {
     const options = {
+        type: 'line',
         responsive: true,
         maintainAspectRatio: true,
         layout: {

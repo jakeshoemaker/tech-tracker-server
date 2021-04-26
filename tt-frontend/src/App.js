@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Header from './Components/Header/Header'
 import Home from './Components/Home/Home'
 import Login from './Components/Auth/Login/Login'
+import Landing from './Components/Landing/Landing'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AuthContext } from './Context/Auth';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 
 const App = () => {
@@ -20,10 +22,11 @@ const App = () => {
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
-        <div>
+        <div className="app">
           <Header />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
         </div>
       </Router>
     </AuthContext.Provider>
