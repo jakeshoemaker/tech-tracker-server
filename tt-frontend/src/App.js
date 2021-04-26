@@ -22,8 +22,8 @@ const App = () => {
       <Router>
         <div>
           <Header />
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
         </div>
       </Router>
     </AuthContext.Provider>
