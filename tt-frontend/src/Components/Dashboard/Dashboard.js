@@ -108,8 +108,16 @@ const Dashboard = () => {
 
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => {getPrediction()}}>SP500</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">NASDAQ</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">CRYPTO</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {setPredictionData({
+                                    "market": "NASDAQ",
+                                    "advice": "API ROUTE UNDER CONSTRUCTION"
+                                })}}>NASDAQ</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {setPredictionData({
+                                    "market": "Crypto",
+                                    "advice": "CRYPTO API ROUTES UNDER CONSTRUCTION"
+                                })
+                                    setHasPrediction(true)
+                                    }}>CRYPTO</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
