@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Input}from 'react-bootstrap'
+import { Button, Dropdown }from 'react-bootstrap'
 import axios from 'axios'
 import Chart from '../Chart/Chart'
 import './Dashboard.css'
@@ -8,6 +8,8 @@ import './Dashboard.css'
 const Dashboard = () => {
     const [tempCompany, setTempCompany] = useState()
     const [companyData, setCompanyData] = useState()
+    const [predictionData, setPredictionData] = useState()
+    const [hasPrediction, setHasPrediction] = useState(false)
     
     const getChart = () => {
         let companyClosingData = [] // holds closing price
@@ -44,16 +46,48 @@ const Dashboard = () => {
 
 
 
+    const getPrediction = () => {
+        axios
+        .get('http://127.0.0.1:8080/api/market/sp500/prediction/1day')
+        .then(res => {
+            // setting the state to prediciton data 
+            setPredictionData({
+                "prev_close": res.data.previous_close,
+                "prediction": res.data.prediction,
+                "market": res.data.market_id
+            })
+            setHasPrediction(true)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+
+
     return (
          <div id="dashboard-container">
-            <div className="container" >
-                <h2> Historical Data View</h2>
-            </div>
-            <div className="container">
-                <div className="row" id="data-search">
-                    <div className="col-sm">
+            <div className="container-fluid" >
+                <div className="row" id="dashboard-titles">
+                     <div className="col-sm">
+                        <h2> Historical Data View</h2>
+                     </div>
+                     <div className="col-sm" id="prediction-title">
+                         <h2> AI Prediction</h2>
+                     </div>
+                </div>
+            
+            
+                <div className="row justify-content-start" id="data-search">
+                    <div className="col-1">
                         <label>Stock Symbol</label>
-                        <input type="text" id="company-ticker" className="form-control" onChange={(e) => {setTempCompany(e.target.value)}} />
+                        <input type="text"
+                               id="company-ticker"
+                               className="form-control"
+                               onChange={(e) => {setTempCompany(e.target.value)}}
+                               onSubmit={() => {getChart()}}
+                               style={{
+                                   width: "150px"
+                               }} />
                     </div>
                     <div className="col-sm" id="get-data">
                         <Button 
@@ -61,10 +95,56 @@ const Dashboard = () => {
                         onClick={ () => {
                             getChart()
                         }}
-                    >Load Data</Button>
+                        >Load Data</Button>
+                    </div>
+                    <div className="col-sm" id="market-picker">
+                        <label> Choose Market </label>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="outline-danger" id="dropdown-basic">
+                            Dropdown Button
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => {getPrediction()}}>SP500</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">NASDAQ</Dropdown.Item>
+                                <Dropdown.Item href="#/action-3">CRYPTO</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                 </div>
-                <Chart companyData={companyData} />
+            </div>
+            <div className="row" id="content-container">
+                <div className="col">
+                    <Chart companyData={companyData} />
+                </div>
+                { (!hasPrediction) ? 
+                    (<div className="col" id="no-pred">
+                        <div className="card" style={{width: "18rem",
+                                                      marginTop: "10px"}}>
+                            <div className="card-header">
+                                AI Prediction Results:
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    ) : (
+                    <div className="col" id="pred">
+                        <div className="card" style={{width: "18rem",
+                                                      marginTop: "10px"}}>
+                            <div className="card-header">
+                                AI Prediction Results:
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">Market: {predictionData.market}</li>
+                                <li className="list-group-item">Previous Close: {predictionData.previous_close}</li>
+                                <li className="list-group-item">Tomorrows (Predicted) Close: {predictionData.prediction}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    )}
             </div>
         </div>
     )
