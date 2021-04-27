@@ -1,5 +1,10 @@
 @import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;&display=swap');
 
 .app {
-  background-color: #FAF9F6;
+  height: 100%;
+}
+
+*{
+  font-family: poppins, sans-serif;
 }

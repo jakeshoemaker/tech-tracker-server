@@ -1,7 +1,16 @@
+
+#prediction-title {
+    align-content: flex-end;
+}
+
 #get-data {
     margin-top: 32px;
+    
 }
 
 #data-search {
     margin-left: 3px;
 }
+
+
+
