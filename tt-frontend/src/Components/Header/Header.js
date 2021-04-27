@@ -13,10 +13,12 @@ const Header = (props) => {
         <div className="page-header">
             <PageHeader
                 ghost={false}
-                title={<Link to="/"><h2>Tech Tracker</h2></Link>}
+                title={<Link to="/"><h1 style={{fontWeight: "bolder"}}>T <span style={{ paddingRight: "5px"}}>T</span>  </h1></Link>}
                 subTitle="Your All-In-One Stock Researcher"
                 extra={[
-                    <Link to="/login"><Button variant="dark" >Login</Button></Link>
+                    <Link to="/info"><Button variant="outline-dark" >info</Button></Link>,
+                    <Link to="/dashboard"><Button variant="outline-dark" >dashboard</Button></Link>,
+                    <a href="https://github.com/jakeshoemaker/tech-tracker-server"><Button variant="outline-dark" >github</Button></a>
                 ]}            
             />
         </div>
@@ -29,8 +31,8 @@ const Header = (props) => {
                     title="Tech Tracker"
                     subTitle="Your All-In-One Stock Researcher"
                     extra={[
-                        <Button variant="dark">Welcome {context.userName}</Button>,
-                        <Button variant="dark"> Logout </Button>
+                        <Button variant="danger">Welcome {context.userName}</Button>,
+                        <Button variant="danger"> Logout </Button>
                     ]}
                 />
             </div>

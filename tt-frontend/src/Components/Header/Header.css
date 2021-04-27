@@ -1,4 +1,18 @@
 .page-header {
     padding: 5px;
-    background-color: #FAF9F6;
+    
   }
+
+div.ant-page-header {
+  background-color: transparent;
+  font-style: italic;
+  font-size: 20px;
+}
+
+h2 {
+  padding-right: 10px;
+}
+
+span {
+  color: red;
+}

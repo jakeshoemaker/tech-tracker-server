@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Button, Input}from 'react-bootstrap'
 import axios from 'axios'
 import Chart from '../Chart/Chart'
-import { Utils }
 import './Dashboard.css'
 
 
@@ -29,9 +28,8 @@ const Dashboard = () => {
                             label: `${tempCompany}'s Stock Price $`,
                             fontSize: 28,
                             data: companyClosingData,
-                            backgroundColor: Utils.CHART_COLORS.blue,
-                            borderColor: Utils.CHART_COLORS.blue,
-
+                            backgroundColor: '#58595b',
+                            borderColor: '#58595b'
                         }
                     ]
                 })
@@ -47,8 +45,8 @@ const Dashboard = () => {
 
 
     return (
-        <div className="dashboard">
-            <div className="container-md">
+         <div id="dashboard-container">
+            <div className="container" >
                 <h2> Historical Data View</h2>
             </div>
             <div className="container">
@@ -68,7 +66,6 @@ const Dashboard = () => {
                 </div>
                 <Chart companyData={companyData} />
             </div>
-            
         </div>
     )
 

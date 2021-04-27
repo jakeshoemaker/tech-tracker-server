@@ -4,8 +4,8 @@
     border: 5px;
     height: 420px;
     width: 800px;
-    background-color:#dfdfdf;
-    border-color: #292929;
     border-radius: 2%;
+    border-color: rgb(27, 27, 27);
+    background-color: transparent;
     text-align: right;
 }

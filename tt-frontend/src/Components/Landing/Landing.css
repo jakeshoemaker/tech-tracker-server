@@ -1,0 +1,21 @@
+#container {
+    text-align: center;
+}
+
+#landing-content-container {
+    margin: 10px;
+    padding-top: 10px;
+}
+
+h1 {
+    font-size: xx-large;
+}
+
+p {
+    font-size: medium;
+}
+
+div.landing-main {
+    margin-top: 40px;
+    font-size: 80px;
+}
