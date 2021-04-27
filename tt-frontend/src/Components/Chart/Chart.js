@@ -26,14 +26,16 @@ const Chart = (props) => {
                 ticks: {
                     fontSize: 18,
                     fontColor: 'black'
-                }
+                },
+                text: "Stock Price in USD($)"
             }],
             xAxes: [{
             ticks: {
                 fontSize: 18,
                 fontColor: 'black'
 
-            }
+            },
+            text: "Date"
             }]
         }
     }

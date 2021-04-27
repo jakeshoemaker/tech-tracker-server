@@ -24,11 +24,20 @@ const Landing = () => {
                          the: S&P500, Nasdaq, and New York Stock exchange 
                             </p></Col>
                 </Row>
-                
-                <Button 
+                <Link to="/info"> 
+                    <Button 
                     variant="outline-dark"
                     size="lg"
-                    >Learn More</Button>
+                    >Learn More
+                    </Button>
+                </Link>
+                <span style={{paddingRight: "10px"}}/>
+                <Link to="/dashboard">
+                    <Button
+                    variant="outline-danger"
+                    size="lg"
+                    >Get Started</Button>
+                </Link>
             </div>
         </div>
     )
