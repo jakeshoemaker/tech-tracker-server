@@ -48,13 +48,15 @@ const Dashboard = () => {
 
     const getPrediction = () => {
         axios
-        .get('http://127.0.0.1:8080/api/market/sp500/prediction/1day')
+        .get('http://localhost:8080/api/market/sp500/prediction/1wk')
         .then(res => {
             // setting the state to prediciton data 
+            console.log(res)
             setPredictionData({
                 "prev_close": res.data.previous_close,
                 "prediction": res.data.prediction,
-                "market": res.data.market_id
+                "market": res.data.market,
+                "advice": res.data.advice
             })
             setHasPrediction(true)
         }).catch(err => {
@@ -139,8 +141,9 @@ const Dashboard = () => {
                             </div>
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Market: {predictionData.market}</li>
-                                <li className="list-group-item">Previous Close: {predictionData.previous_close}</li>
-                                <li className="list-group-item">Tomorrows (Predicted) Close: {predictionData.prediction}</li>
+                                <li className="list-group-item">Previous Close: ${predictionData.prev_close}</li>
+                                <li className="list-group-item">Tomorrows (Predicted) Close: ${predictionData.prediction}</li>
+                                <li className="list-group-item">AI Advice: {predictionData.advice}</li>
                             </ul>
                         </div>
                     </div>

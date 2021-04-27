@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Components/Header/Header'
-import Home from './Components/Home/Home'
+import Info from './Components/Info/Info'
 import Login from './Components/Auth/Login/Login'
 import Landing from './Components/Landing/Landing'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -27,6 +27,7 @@ const App = () => {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/info" component={Info} />
         </div>
       </Router>
     </AuthContext.Provider>
